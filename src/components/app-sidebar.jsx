@@ -1,4 +1,5 @@
 import * as React from "react";
+import { authAPI } from "@/services/api";
 import {
   AudioWaveform,
   BookOpen,
@@ -32,11 +33,14 @@ import {
 
 // Data for different user types
 const getDataForUserType = (userType) => {
+  // Get current user from localStorage
+  const currentUser = authAPI.getCurrentUser();
+
   const commonData = {
     user: {
-      name: "shadcn",
-      email: "m@example.com",
-      avatar: "/avatars/shadcn.jpg",
+      name: currentUser?.name || "User",
+      email: currentUser?.email || "user@example.com",
+      avatar: currentUser?.avatar || "/avatars/default.jpg",
     },
     teams: [
       {

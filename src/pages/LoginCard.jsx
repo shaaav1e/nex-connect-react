@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { authAPI } from "@/services/api";
 import {
   Card,
   CardAction,
@@ -21,6 +22,7 @@ const LoginCard = () => {
     role: "investor",
   });
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false); // Added loading state
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -56,12 +58,42 @@ const LoginCard = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors({}); // Clear previous errors
 
     if (validateForm()) {
-      // Simulate login - redirect based on role
-      navigate(`/dashboard/${formData.role}`);
+      setLoading(true); // Set loading to true
+      try {
+        const { user, token } = await authAPI.login({
+          email: formData.email,
+          password: formData.password,
+        });
+
+        // Store user and token (e.g., in localStorage or context)
+        // For this example, we'll just navigate
+        console.log("Login successful:", user, token);
+
+        // Navigate based on userType from API response
+        navigate(`/dashboard/${user.userType}`);
+      } catch (error) {
+        console.error("Login failed:", error);
+        // Display error message to the user
+        // Check if error.response exists and has data with a message
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) {
+          setErrors({ api: error.response.data.message });
+        } else if (error.message) {
+          setErrors({ api: error.message });
+        } else {
+          setErrors({ api: "Login failed. Please try again." });
+        }
+      } finally {
+        setLoading(false); // Set loading to false
+      }
     }
   };
 
@@ -136,14 +168,24 @@ const LoginCard = () => {
                   </span>
                 )}
               </div>
+              {errors.api && ( // Display API errors
+                <div className="grid gap-2">
+                  <span className="text-sm text-red-500">{errors.api}</span>
+                </div>
+              )}
             </div>
           </form>
         </CardContent>
         <CardFooter className="flex-col gap-2">
-          <Button type="submit" className="w-full" onClick={handleSubmit}>
-            Login
+          <Button
+            type="submit"
+            className="w-full"
+            onClick={handleSubmit}
+            disabled={loading}
+          >
+            {loading ? "Logging in..." : "Login"}
           </Button>
-          <Button variant="outline" className="w-full">
+          <Button variant="outline" className="w-full" disabled={loading}>
             Login with Google
           </Button>
         </CardFooter>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mock API Test</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .endpoint {
+        margin: 20px 0;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .response {
+        background: #f5f5f5;
+        padding: 10px;
+        border-radius: 3px;
+        white-space: pre-wrap;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+      button {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+      .error {
+        background: #ffebee;
+        color: #c62828;
+      }
+      .success {
+        background: #e8f5e8;
+        color: #2e7d32;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Mock API Test Page</h1>
+    <p>Test all the endpoints to verify the mock API is working correctly.</p>
+
+    <div class="endpoint">
+      <h3>GET /entrepreneurs</h3>
+      <button
+        onclick="testEndpoint('/entrepreneurs', 'entrepreneurs-response')"
+      >
+        Test Entrepreneurs
+      </button>
+      <div id="entrepreneurs-response" class="response"></div>
+    </div>
+
+    <div class="endpoint">
+      <h3>GET /investors</h3>
+      <button onclick="testEndpoint('/investors', 'investors-response')">
+        Test Investors
+      </button>
+      <div id="investors-response" class="response"></div>
+    </div>
+
+    <div class="endpoint">
+      <h3>GET /collaborationRequests</h3>
+      <button
+        onclick="testEndpoint('/collaborationRequests', 'collaboration-response')"
+      >
+        Test Collaboration Requests
+      </button>
+      <div id="collaboration-response" class="response"></div>
+    </div>
+
+    <div class="endpoint">
+      <h3>GET /users</h3>
+      <button onclick="testEndpoint('/users', 'users-response')">
+        Test Users
+      </button>
+      <div id="users-response" class="response"></div>
+    </div>
+
+    <script>
+      const API_BASE = "http://localhost:3001";
+
+      async function testEndpoint(endpoint, responseId) {
+        const responseDiv = document.getElementById(responseId);
+        responseDiv.innerHTML = "Loading...";
+        responseDiv.className = "response";
+
+        try {
+          const response = await fetch(API_BASE + endpoint);
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
+          const data = await response.json();
+          responseDiv.innerHTML = JSON.stringify(data, null, 2);
+          responseDiv.className = "response success";
+        } catch (error) {
+          responseDiv.innerHTML = `Error: ${error.message}`;
+          responseDiv.className = "response error";
+        }
+      }
+
+      // Test all endpoints on load
+      window.onload = function () {
+        setTimeout(() => {
+          testEndpoint("/entrepreneurs", "entrepreneurs-response");
+          testEndpoint("/investors", "investors-response");
+          testEndpoint("/collaborationRequests", "collaboration-response");
+          testEndpoint("/users", "users-response");
+        }, 1000);
+      };
+    </script>
+  </body>
+</html>

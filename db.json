@@ -1,0 +1,361 @@
+{
+  "entrepreneurs": [
+    {
+      "id": "1",
+      "name": "Sarah Johnson",
+      "startupName": "HealthTech Innovations",
+      "pitchSummary": "Revolutionary AI-powered diagnostic platform that reduces diagnosis time by 80% and improves accuracy for rare diseases.",
+      "avatar": "SJ",
+      "location": "San Francisco, CA",
+      "stage": "Series A",
+      "industry": "HealthTech",
+      "foundedYear": 2022,
+      "teamSize": 15,
+      "revenue": "$2.5M",
+      "funding": "$5M",
+      "description": "HealthTech Innovations is at the forefront of medical AI, developing cutting-edge diagnostic tools that leverage machine learning to identify rare diseases with unprecedented accuracy. Our platform has been tested in over 50 hospitals and has shown remarkable results in reducing misdiagnoses.",
+      "achievements": [
+        "FDA Approval",
+        "50+ Hospital Partnerships",
+        "80% Faster Diagnosis"
+      ],
+      "contact": {
+        "email": "sarah.johnson@healthtech.com",
+        "phone": "+1 (555) 123-4567",
+        "linkedin": "linkedin.com/in/sarahjohnson"
+      }
+    },
+    {
+      "id": "2",
+      "name": "Michael Chen",
+      "startupName": "EcoEnergy Solutions",
+      "pitchSummary": "Smart grid technology for renewable energy management, helping cities reduce carbon footprint by 40%.",
+      "avatar": "MC",
+      "location": "Austin, TX",
+      "stage": "Seed",
+      "industry": "CleanTech",
+      "foundedYear": 2023,
+      "teamSize": 8,
+      "revenue": "$800K",
+      "funding": "$2M",
+      "description": "EcoEnergy Solutions develops smart grid infrastructure that optimizes renewable energy distribution across urban environments. Our technology has helped reduce energy waste by 30% in pilot cities.",
+      "achievements": [
+        "3 Smart City Partnerships",
+        "30% Energy Efficiency",
+        "Carbon Neutral Certified"
+      ],
+      "contact": {
+        "email": "michael.chen@ecoenergy.com",
+        "phone": "+1 (555) 234-5678",
+        "linkedin": "linkedin.com/in/michaelchen"
+      }
+    },
+    {
+      "id": "3",
+      "name": "Emily Rodriguez",
+      "startupName": "EduLearn AI",
+      "pitchSummary": "Personalized learning platform using machine learning to adapt to each student's learning style and pace.",
+      "avatar": "ER",
+      "location": "Boston, MA",
+      "stage": "Pre-Seed",
+      "industry": "EdTech",
+      "foundedYear": 2024,
+      "teamSize": 5,
+      "revenue": "$200K",
+      "funding": "$500K",
+      "description": "EduLearn AI transforms education through personalized learning experiences powered by advanced AI algorithms. Our platform adapts in real-time to each student's learning patterns and preferences.",
+      "achievements": [
+        "10+ School Districts",
+        "95% Student Satisfaction",
+        "MIT Partnership"
+      ],
+      "contact": {
+        "email": "emily.rodriguez@edulearn.com",
+        "phone": "+1 (555) 345-6789",
+        "linkedin": "linkedin.com/in/emilyrodriguez"
+      }
+    },
+    {
+      "id": "4",
+      "name": "David Kim",
+      "startupName": "FinanceFlow",
+      "pitchSummary": "Blockchain-based payment processing for small businesses, reducing transaction fees by 60%.",
+      "avatar": "DK",
+      "location": "New York, NY",
+      "stage": "Series A",
+      "industry": "FinTech",
+      "foundedYear": 2021,
+      "teamSize": 25,
+      "revenue": "$8M",
+      "funding": "$15M",
+      "description": "FinanceFlow revolutionizes payment processing for SMBs through blockchain technology, offering significantly lower fees and faster transactions while maintaining enterprise-level security.",
+      "achievements": [
+        "1000+ Business Clients",
+        "60% Fee Reduction",
+        "SOC 2 Certified"
+      ],
+      "contact": {
+        "email": "david.kim@financeflow.com",
+        "phone": "+1 (555) 456-7890",
+        "linkedin": "linkedin.com/in/davidkim"
+      }
+    },
+    {
+      "id": "5",
+      "name": "Jessica Martinez",
+      "startupName": "FoodChain Track",
+      "pitchSummary": "Supply chain transparency platform for food industry using IoT and blockchain technology.",
+      "avatar": "JM",
+      "location": "Miami, FL",
+      "stage": "Seed",
+      "industry": "FoodTech",
+      "foundedYear": 2023,
+      "teamSize": 12,
+      "revenue": "$1.2M",
+      "funding": "$3M",
+      "description": "FoodChain Track ensures food safety and transparency through end-to-end supply chain tracking using IoT sensors and blockchain verification.",
+      "achievements": [
+        "50+ Food Brands",
+        "Zero Recalls",
+        "USDA Partnership"
+      ],
+      "contact": {
+        "email": "jessica.martinez@foodchain.com",
+        "phone": "+1 (555) 567-8901",
+        "linkedin": "linkedin.com/in/jessicamartinez"
+      }
+    },
+    {
+      "id": "6",
+      "name": "Alex Thompson",
+      "startupName": "CyberGuard Pro",
+      "pitchSummary": "AI-driven cybersecurity solution for SMBs, preventing 99.9% of known threats with automated response.",
+      "avatar": "AT",
+      "location": "Seattle, WA",
+      "stage": "Series B",
+      "industry": "CyberSecurity",
+      "foundedYear": 2020,
+      "teamSize": 45,
+      "revenue": "$15M",
+      "funding": "$30M",
+      "description": "CyberGuard Pro provides enterprise-grade cybersecurity solutions tailored for small and medium businesses, using AI to predict and prevent cyber threats before they occur.",
+      "achievements": [
+        "500+ Protected Businesses",
+        "99.9% Threat Prevention",
+        "ISO 27001 Certified"
+      ],
+      "contact": {
+        "email": "alex.thompson@cyberguard.com",
+        "phone": "+1 (555) 678-9012",
+        "linkedin": "linkedin.com/in/alexthompson"
+      }
+    }
+  ],
+  "investors": [
+    {
+      "id": "1",
+      "name": "Robert Williams",
+      "company": "Venture Capital Partners",
+      "profileSnippet": "Senior Partner with 15+ years experience in HealthTech and AI investments. Portfolio includes 12 successful exits.",
+      "avatar": "RW",
+      "investmentRange": "$500K - $2M",
+      "specialties": [
+        "HealthTech",
+        "AI/ML",
+        "Biotech"
+      ],
+      "portfolioSize": 45,
+      "successfulExits": 12,
+      "yearsExperience": 15,
+      "description": "Robert Williams is a seasoned venture capitalist with deep expertise in healthcare technology and artificial intelligence. His portfolio companies have collectively raised over $200M and achieved a 70% success rate.",
+      "achievements": [
+        "12 Successful Exits",
+        "$200M+ Portfolio Value",
+        "Healthcare Innovation Award"
+      ],
+      "contact": {
+        "email": "robert.williams@vcpartners.com",
+        "phone": "+1 (555) 111-2222",
+        "linkedin": "linkedin.com/in/robertwilliams"
+      }
+    },
+    {
+      "id": "2",
+      "name": "Lisa Anderson",
+      "company": "TechGrowth Investments",
+      "profileSnippet": "Managing Director focusing on early-stage SaaS and EdTech startups. Previously founded and sold 2 tech companies.",
+      "avatar": "LA",
+      "investmentRange": "$250K - $1M",
+      "specialties": [
+        "SaaS",
+        "EdTech",
+        "Enterprise Software"
+      ],
+      "portfolioSize": 30,
+      "successfulExits": 8,
+      "yearsExperience": 12,
+      "description": "Lisa Anderson brings a unique perspective as both an entrepreneur and investor. Having founded and successfully exited two tech companies, she now focuses on helping early-stage SaaS and EdTech startups scale.",
+      "achievements": [
+        "2 Company Exits",
+        "30+ Portfolio Companies",
+        "Forbes 40 Under 40"
+      ],
+      "contact": {
+        "email": "lisa.anderson@techgrowth.com",
+        "phone": "+1 (555) 222-3333",
+        "linkedin": "linkedin.com/in/lisaanderson"
+      }
+    },
+    {
+      "id": "3",
+      "name": "James Chen",
+      "company": "Innovation Fund",
+      "profileSnippet": "Angel investor and startup mentor with expertise in fintech and blockchain. Invested in 30+ startups.",
+      "avatar": "JC",
+      "investmentRange": "$100K - $500K",
+      "specialties": [
+        "FinTech",
+        "Blockchain",
+        "Cryptocurrency"
+      ],
+      "portfolioSize": 35,
+      "successfulExits": 6,
+      "yearsExperience": 10,
+      "description": "James Chen is a prominent angel investor in the fintech space, known for his early investments in blockchain and cryptocurrency startups. He provides hands-on mentorship to portfolio companies.",
+      "achievements": [
+        "30+ Startup Investments",
+        "Blockchain Pioneer",
+        "TechCrunch Investor of the Year"
+      ],
+      "contact": {
+        "email": "james.chen@innovationfund.com",
+        "phone": "+1 (555) 333-4444",
+        "linkedin": "linkedin.com/in/jameschen"
+      }
+    },
+    {
+      "id": "4",
+      "name": "Maria Garcia",
+      "company": "Future Ventures",
+      "profileSnippet": "Partner specializing in sustainable technology and green energy solutions. Former VP at Goldman Sachs.",
+      "avatar": "MG",
+      "investmentRange": "$1M - $5M",
+      "specialties": [
+        "CleanTech",
+        "Sustainability",
+        "Renewable Energy"
+      ],
+      "portfolioSize": 20,
+      "successfulExits": 5,
+      "yearsExperience": 18,
+      "description": "Maria Garcia combines Wall Street expertise with passion for sustainable technology. Her background at Goldman Sachs provides deep financial acumen for evaluating cleantech investments.",
+      "achievements": [
+        "Goldman Sachs VP",
+        "CleanTech Leader",
+        "$100M+ Sustainability Fund"
+      ],
+      "contact": {
+        "email": "maria.garcia@futureventures.com",
+        "phone": "+1 (555) 444-5555",
+        "linkedin": "linkedin.com/in/mariagarcia"
+      }
+    },
+    {
+      "id": "5",
+      "name": "Thomas Johnson",
+      "company": "Capital Bridge",
+      "profileSnippet": "Serial entrepreneur turned investor. Focus on B2B SaaS and marketplace platforms. 8 years of investment experience.",
+      "avatar": "TJ",
+      "investmentRange": "$300K - $1.5M",
+      "specialties": [
+        "B2B SaaS",
+        "Marketplaces",
+        "Enterprise Solutions"
+      ],
+      "portfolioSize": 25,
+      "successfulExits": 4,
+      "yearsExperience": 8,
+      "description": "Thomas Johnson transitioned from successful entrepreneur to investor, bringing operational expertise to B2B SaaS and marketplace investments. He's known for his hands-on approach with portfolio companies.",
+      "achievements": [
+        "Serial Entrepreneur",
+        "25 Portfolio Companies",
+        "SaaS Expert"
+      ],
+      "contact": {
+        "email": "thomas.johnson@capitalbridge.com",
+        "phone": "+1 (555) 555-6666",
+        "linkedin": "linkedin.com/in/thomasjohnson"
+      }
+    }
+  ],
+  "collaborationRequests": [
+    {
+      "id": "1",
+      "investorId": 1,
+      "entrepreneurId": 1,
+      "status": "accepted",
+      "requestDate": "2024-12-05",
+      "message": "I'm very interested in your AI diagnostic platform. Would love to discuss potential investment opportunities.",
+      "proposedAmount": "$1.5M",
+      "equity": "15%"
+    },
+    {
+      "id": "2",
+      "investorId": 2,
+      "entrepreneurId": 1,
+      "status": "accepted",
+      "requestDate": "2024-12-03",
+      "message": "Your EdTech approach aligns perfectly with our portfolio strategy. Let's explore a partnership.",
+      "proposedAmount": "$750K",
+      "equity": "12%"
+    },
+    {
+      "id": "3",
+      "investorId": 3,
+      "entrepreneurId": 1,
+      "status": "rejected",
+      "requestDate": "2024-12-02",
+      "message": "Interested in learning more about your blockchain payment solution and potential collaboration.",
+      "proposedAmount": "$400K",
+      "equity": "8%"
+    },
+    {
+      "id": "4",
+      "investorId": 4,
+      "entrepreneurId": 1,
+      "status": "rejected",
+      "requestDate": "2024-11-28",
+      "message": "While impressive, this doesn't align with our current sustainability focus. Best of luck!",
+      "proposedAmount": "$2M",
+      "equity": "18%"
+    },
+    {
+      "id": "5",
+      "investorId": 5,
+      "entrepreneurId": 1,
+      "status": "accepted",
+      "requestDate": "2024-11-25",
+      "message": "Your B2B SaaS model shows great potential. Would like to schedule a meeting to discuss further.",
+      "proposedAmount": "$1M",
+      "equity": "10%"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "email": "investor@example.com",
+      "password": "password123",
+      "userType": "investor",
+      "name": "John Investor",
+      "profileId": 1
+    },
+    {
+      "id": "2",
+      "email": "entrepreneur@example.com",
+      "password": "password123",
+      "userType": "entrepreneur",
+      "name": "Jane Entrepreneur",
+      "profileId": 1
+    }
+  ]
+}

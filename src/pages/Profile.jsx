@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { AppSidebar } from "@/components/app-sidebar";
+import { entrepreneursAPI, investorsAPI } from "@/services/api";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -27,33 +28,70 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const Profile = ({ userType = "investor" }) => {
   const { id } = useParams();
+  const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Mock profile data - in real app, this would come from API
-  const profileData = {
-    investor: {
-      name: "John Smith",
-      title: "Senior Investment Partner",
-      company: "Venture Capital Firm",
-      location: "San Francisco, CA",
-      bio: "Experienced investor with 10+ years in tech startups. Focus on early-stage companies in AI, SaaS, and FinTech.",
-      investments: 45,
-      portfolio: "$2.5M",
-      sectors: ["AI/ML", "SaaS", "FinTech", "HealthTech"],
-    },
-    entrepreneur: {
-      name: "Sarah Johnson",
-      title: "Founder & CEO",
-      company: "TechStartup Inc.",
-      location: "Austin, TX",
-      bio: "Serial entrepreneur building innovative solutions in the healthcare technology space. Previously founded two successful startups.",
-      projects: 3,
-      funding: "$1.2M raised",
-      sectors: ["HealthTech", "B2B SaaS", "Mobile Apps"],
-    },
-  };
-
-  const profile = profileData[userType];
   const dashboardLink = `/dashboard/${userType}`;
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        setLoading(true);
+        let profileData;
+
+        if (userType === "investor") {
+          profileData = await investorsAPI.getById(id);
+        } else {
+          profileData = await entrepreneursAPI.getById(id);
+        }
+
+        setProfile(profileData);
+      } catch (err) {
+        setError("Failed to load profile");
+        console.error("Error fetching profile:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchProfile();
+    }
+  }, [id, userType]);
+
+  if (loading) {
+    return (
+      <SidebarProvider>
+        <AppSidebar userType={userType} />
+        <SidebarInset>
+          <div className="flex min-h-screen items-center justify-center">
+            <p className="text-muted-foreground">Loading profile...</p>
+          </div>
+        </SidebarInset>
+      </SidebarProvider>
+    );
+  }
+
+  if (error || !profile) {
+    return (
+      <SidebarProvider>
+        <AppSidebar userType={userType} />
+        <SidebarInset>
+          <div className="flex min-h-screen items-center justify-center">
+            <div className="text-center">
+              <p className="text-red-500 mb-4">
+                {error || "Profile not found"}
+              </p>
+              <Link to={dashboardLink}>
+                <Button variant="outline">Back to Dashboard</Button>
+              </Link>
+            </div>
+          </div>
+        </SidebarInset>
+      </SidebarProvider>
+    );
+  }
 
   return (
     <SidebarProvider>
@@ -95,22 +133,27 @@ const Profile = ({ userType = "investor" }) => {
           <div className="grid gap-4 md:grid-cols-3">
             {/* Profile Overview Card */}
             <Card className="md:col-span-2">
+              {" "}
               <CardHeader className="flex flex-row items-center space-y-0 pb-2">
                 <Avatar className="h-16 w-16 mr-4">
                   <AvatarFallback className="text-lg">
-                    {profile.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
+                    {profile.avatar ||
+                      profile.name
+                        ?.split(" ")
+                        .map((n) => n[0])
+                        .join("") ||
+                      "??"}
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
                   <CardTitle className="text-xl">{profile.name}</CardTitle>
                   <CardDescription className="text-sm">
-                    {profile.title} at {profile.company}
+                    {userType === "investor"
+                      ? `${profile.company}`
+                      : `${profile.startupName}`}
                   </CardDescription>
                   <p className="text-sm text-muted-foreground mt-1">
-                    {profile.location}
+                    {profile.location || "Location not specified"}
                   </p>
                 </div>
               </CardHeader>
@@ -119,7 +162,9 @@ const Profile = ({ userType = "investor" }) => {
                   <div>
                     <h3 className="font-semibold mb-2">About</h3>
                     <p className="text-sm text-muted-foreground">
-                      {profile.bio}
+                      {userType === "investor"
+                        ? profile.description || profile.profileSnippet
+                        : profile.description || profile.pitchSummary}
                     </p>
                   </div>
 
@@ -127,17 +172,28 @@ const Profile = ({ userType = "investor" }) => {
                     <h3 className="font-semibold mb-2">
                       {userType === "investor"
                         ? "Investment Focus"
-                        : "Expertise"}
+                        : "Industry & Stage"}
                     </h3>
                     <div className="flex flex-wrap gap-2">
-                      {profile.sectors.map((sector) => (
-                        <span
-                          key={sector}
-                          className="px-2 py-1 bg-secondary text-secondary-foreground rounded-md text-sm"
-                        >
-                          {sector}
-                        </span>
-                      ))}
+                      {userType === "investor" ? (
+                        profile.specialties?.map((specialty) => (
+                          <span
+                            key={specialty}
+                            className="px-2 py-1 bg-secondary text-secondary-foreground rounded-md text-sm"
+                          >
+                            {specialty}
+                          </span>
+                        ))
+                      ) : (
+                        <>
+                          <span className="px-2 py-1 bg-secondary text-secondary-foreground rounded-md text-sm">
+                            {profile.industry}
+                          </span>
+                          <span className="px-2 py-1 bg-secondary text-secondary-foreground rounded-md text-sm">
+                            {profile.stage}
+                          </span>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -148,41 +204,53 @@ const Profile = ({ userType = "investor" }) => {
             <Card>
               <CardHeader>
                 <CardTitle>Statistics</CardTitle>
-              </CardHeader>
+              </CardHeader>{" "}
               <CardContent className="space-y-4">
                 {userType === "investor" ? (
                   <>
                     <div className="flex justify-between items-center">
                       <span className="text-sm font-medium">
-                        Total Investments
+                        Portfolio Size
                       </span>
                       <span className="text-2xl font-bold">
-                        {profile.investments}
+                        {profile.portfolioSize || 0}
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-sm font-medium">
-                        Portfolio Value
+                        Investment Range
                       </span>
                       <span className="text-2xl font-bold">
-                        {profile.portfolio}
+                        {profile.investmentRange || "N/A"}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm font-medium">
+                        Years Experience
+                      </span>
+                      <span className="text-2xl font-bold">
+                        {profile.yearsExperience || 0}
                       </span>
                     </div>
                   </>
                 ) : (
                   <>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium">
-                        Active Projects
-                      </span>
+                      <span className="text-sm font-medium">Team Size</span>
                       <span className="text-2xl font-bold">
-                        {profile.projects}
+                        {profile.teamSize || 1}
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium">Total Funding</span>
+                      <span className="text-sm font-medium">Revenue</span>
                       <span className="text-2xl font-bold">
-                        {profile.funding}
+                        {profile.revenue || "$0"}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm font-medium">Funding</span>
+                      <span className="text-2xl font-bold">
+                        {profile.funding || "$0"}
                       </span>
                     </div>
                   </>
@@ -194,30 +262,28 @@ const Profile = ({ userType = "investor" }) => {
           {/* Additional sections */}
           <div className="grid gap-4 md:grid-cols-2">
             <Card>
+              {" "}
               <CardHeader>
                 <CardTitle>
                   {userType === "investor"
-                    ? "Recent Investments"
-                    : "Recent Projects"}
+                    ? "Achievements"
+                    : "Key Achievements"}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
-                  {[1, 2, 3].map((item) => (
+                  {profile.achievements?.map((achievement, index) => (
                     <div
-                      key={item}
+                      key={index}
                       className="flex items-center justify-between p-2 border rounded"
                     >
-                      <span className="text-sm">
-                        {userType === "investor"
-                          ? `Investment ${item}`
-                          : `Project ${item}`}
-                      </span>
-                      <span className="text-xs text-muted-foreground">
-                        {new Date().toLocaleDateString()}
-                      </span>
+                      <span className="text-sm">{achievement}</span>
                     </div>
-                  ))}
+                  )) || (
+                    <p className="text-sm text-muted-foreground">
+                      No achievements listed yet.
+                    </p>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -230,17 +296,21 @@ const Profile = ({ userType = "investor" }) => {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="text-sm font-medium">Email:</span>
-                    <span className="text-sm">contact@example.com</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-sm font-medium">LinkedIn:</span>
-                    <span className="text-sm text-blue-600">
-                      /in/{profile.name.toLowerCase().replace(" ", "")}
+                    <span className="text-sm">
+                      {profile.contact?.email || "Not provided"}
                     </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-sm font-medium">Phone:</span>
-                    <span className="text-sm">+1 (555) 123-4567</span>
+                    <span className="text-sm">
+                      {profile.contact?.phone || "Not provided"}
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-sm font-medium">LinkedIn:</span>
+                    <span className="text-sm text-blue-600">
+                      {profile.contact?.linkedin || "Not provided"}
+                    </span>
                   </div>
                 </div>
               </CardContent>

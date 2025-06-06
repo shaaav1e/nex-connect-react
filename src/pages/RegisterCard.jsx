@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { authAPI } from "@/services/api";
 import {
   Card,
   CardAction,
@@ -20,9 +21,10 @@ const RegisterCard = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    role: "investor",
+    userType: "investor",
   });
   const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -67,13 +69,30 @@ const RegisterCard = () => {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (validateForm()) {
-      // Simulate registration - redirect based on role
-      navigate(`/dashboard/${formData.role}`);
+      setIsLoading(true);
+      setErrors({});
+
+      try {
+        const result = await authAPI.register({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          userType: formData.userType,
+        });
+
+        if (result.success) {
+          // Registration successful, redirect to dashboard
+          navigate(`/dashboard/${formData.userType}`);
+        }
+      } catch (error) {
+        setErrors({ submit: error.message });
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -95,11 +114,11 @@ const RegisterCard = () => {
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="role">I am a</Label>
+                <Label htmlFor="userType">I am a</Label>{" "}
                 <select
-                  id="role"
-                  name="role"
-                  value={formData.role}
+                  id="userType"
+                  name="userType"
+                  value={formData.userType}
                   onChange={handleInputChange}
                   className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 >
@@ -171,14 +190,25 @@ const RegisterCard = () => {
                   <span className="text-sm text-red-500">
                     {errors.confirmPassword}
                   </span>
-                )}
+                )}{" "}
               </div>
+
+              {errors.submit && (
+                <div className="text-sm text-red-500 text-center">
+                  {errors.submit}
+                </div>
+              )}
             </div>
           </form>
         </CardContent>
         <CardFooter className="flex-col gap-2">
-          <Button type="submit" className="w-full" onClick={handleSubmit}>
-            Create Account
+          <Button
+            type="submit"
+            className="w-full"
+            onClick={handleSubmit}
+            disabled={isLoading}
+          >
+            {isLoading ? "Creating Account..." : "Create Account"}
           </Button>
           <Button variant="outline" className="w-full">
             Sign up with Google
