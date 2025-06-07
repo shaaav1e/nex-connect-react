@@ -114,11 +114,7 @@
       "revenue": "$1.2M",
       "funding": "$3M",
       "description": "FoodChain Track ensures food safety and transparency through end-to-end supply chain tracking using IoT sensors and blockchain verification.",
-      "achievements": [
-        "50+ Food Brands",
-        "Zero Recalls",
-        "USDA Partnership"
-      ],
+      "achievements": ["50+ Food Brands", "Zero Recalls", "USDA Partnership"],
       "contact": {
         "email": "jessica.martinez@foodchain.com",
         "phone": "+1 (555) 567-8901",
@@ -126,7 +122,32 @@
       }
     },
     {
-      "id": "6",
+      "id": "5",
+      "name": "Shawaizz",
+      "startupName": "TechVenture Solutions",
+      "pitchSummary": "Innovative technology solutions for modern businesses, focusing on digital transformation and growth.",
+      "avatar": "S",
+      "location": "New York, NY",
+      "stage": "Seed",
+      "industry": "Technology",
+      "foundedYear": 2024,
+      "teamSize": 3,
+      "revenue": "$150K",
+      "funding": "$250K",
+      "description": "TechVenture Solutions helps businesses navigate digital transformation through innovative technology solutions and strategic consulting.",
+      "achievements": [
+        "Digital Innovation Award",
+        "5+ Client Partnerships",
+        "Tech Startup of the Year Nominee"
+      ],
+      "contact": {
+        "email": "shaaavie1@gmail.com",
+        "phone": "+1 (555) 123-7890",
+        "linkedin": "linkedin.com/in/shawaizz"
+      }
+    },
+    {
+      "id": "7",
       "name": "Alex Thompson",
       "startupName": "CyberGuard Pro",
       "pitchSummary": "AI-driven cybersecurity solution for SMBs, preventing 99.9% of known threats with automated response.",
@@ -159,11 +180,7 @@
       "profileSnippet": "Senior Partner with 15+ years experience in HealthTech and AI investments. Portfolio includes 12 successful exits.",
       "avatar": "RW",
       "investmentRange": "$500K - $2M",
-      "specialties": [
-        "HealthTech",
-        "AI/ML",
-        "Biotech"
-      ],
+      "specialties": ["HealthTech", "AI/ML", "Biotech"],
       "portfolioSize": 45,
       "successfulExits": 12,
       "yearsExperience": 15,
@@ -186,11 +203,7 @@
       "profileSnippet": "Managing Director focusing on early-stage SaaS and EdTech startups. Previously founded and sold 2 tech companies.",
       "avatar": "LA",
       "investmentRange": "$250K - $1M",
-      "specialties": [
-        "SaaS",
-        "EdTech",
-        "Enterprise Software"
-      ],
+      "specialties": ["SaaS", "EdTech", "Enterprise Software"],
       "portfolioSize": 30,
       "successfulExits": 8,
       "yearsExperience": 12,
@@ -208,29 +221,25 @@
     },
     {
       "id": "3",
-      "name": "James Chen",
+      "name": "Shawaiz",
       "company": "Innovation Fund",
       "profileSnippet": "Angel investor and startup mentor with expertise in fintech and blockchain. Invested in 30+ startups.",
-      "avatar": "JC",
+      "avatar": "S",
       "investmentRange": "$100K - $500K",
-      "specialties": [
-        "FinTech",
-        "Blockchain",
-        "Cryptocurrency"
-      ],
+      "specialties": ["FinTech", "Blockchain", "Cryptocurrency"],
       "portfolioSize": 35,
       "successfulExits": 6,
       "yearsExperience": 10,
-      "description": "James Chen is a prominent angel investor in the fintech space, known for his early investments in blockchain and cryptocurrency startups. He provides hands-on mentorship to portfolio companies.",
+      "description": "Shawaiz is a prominent angel investor in the fintech space, known for his early investments in blockchain and cryptocurrency startups. He provides hands-on mentorship to portfolio companies.",
       "achievements": [
         "30+ Startup Investments",
         "Blockchain Pioneer",
         "TechCrunch Investor of the Year"
       ],
       "contact": {
-        "email": "james.chen@innovationfund.com",
+        "email": "shaaavie@gmail.com",
         "phone": "+1 (555) 333-4444",
-        "linkedin": "linkedin.com/in/jameschen"
+        "linkedin": "linkedin.com/in/shawaiz"
       }
     },
     {
@@ -240,11 +249,7 @@
       "profileSnippet": "Partner specializing in sustainable technology and green energy solutions. Former VP at Goldman Sachs.",
       "avatar": "MG",
       "investmentRange": "$1M - $5M",
-      "specialties": [
-        "CleanTech",
-        "Sustainability",
-        "Renewable Energy"
-      ],
+      "specialties": ["CleanTech", "Sustainability", "Renewable Energy"],
       "portfolioSize": 20,
       "successfulExits": 5,
       "yearsExperience": 18,
@@ -267,11 +272,7 @@
       "profileSnippet": "Serial entrepreneur turned investor. Focus on B2B SaaS and marketplace platforms. 8 years of investment experience.",
       "avatar": "TJ",
       "investmentRange": "$300K - $1.5M",
-      "specialties": [
-        "B2B SaaS",
-        "Marketplaces",
-        "Enterprise Solutions"
-      ],
+      "specialties": ["B2B SaaS", "Marketplaces", "Enterprise Solutions"],
       "portfolioSize": 25,
       "successfulExits": 4,
       "yearsExperience": 8,
@@ -338,6 +339,66 @@
       "message": "Your B2B SaaS model shows great potential. Would like to schedule a meeting to discuss further.",
       "proposedAmount": "$1M",
       "equity": "10%"
+    },
+    {
+      "id": "8f77",
+      "investorId": "3",
+      "entrepreneurId": "2",
+      "investorName": "Shawaiz",
+      "entrepreneurName": "Michael Chen",
+      "status": "pending",
+      "message": "Testing",
+      "requestDate": "2025-06-07T13:24:57.969Z",
+      "investor": {
+        "name": "Shawaiz",
+        "company": "Independent Investor",
+        "profileSnippet": "Investment professional",
+        "avatar": "S",
+        "investmentRange": "$100K - $1M",
+        "specialties": ["General Investment"],
+        "portfolioSize": 0,
+        "successfulExits": 0
+      }
+    },
+    {
+      "id": "ef0c",
+      "investorId": "3",
+      "entrepreneurId": "2",
+      "investorName": "Shawaiz",
+      "entrepreneurName": "Michael Chen",
+      "status": "pending",
+      "message": "grgrgr",
+      "requestDate": "2025-06-07T13:28:35.029Z",
+      "investor": {
+        "name": "Shawaiz",
+        "company": "Independent Investor",
+        "profileSnippet": "Investment professional",
+        "avatar": "S",
+        "investmentRange": "$100K - $1M",
+        "specialties": ["General Investment"],
+        "portfolioSize": 0,
+        "successfulExits": 0
+      }
+    },
+    {
+      "id": "test123",
+      "investorId": "3",
+      "entrepreneurId": "5",
+      "investorName": "Shawaiz",
+      "entrepreneurName": "Shawaizz",
+      "status": "accepted",
+      "message": "Hi! I'm interested in learning more about your TechVenture Solutions startup. Would love to discuss potential collaboration opportunities.",
+      "requestDate": "2025-06-07T14:00:00.000Z",
+      "investor": {
+        "name": "Shawaiz",
+        "company": "Innovation Fund",
+        "profileSnippet": "Angel investor and startup mentor with expertise in fintech and blockchain",
+        "avatar": "S",
+        "investmentRange": "$100K - $500K",
+        "specialties": ["FinTech", "Blockchain", "Cryptocurrency"],
+        "portfolioSize": 35,
+        "successfulExits": 6
+      }
     }
   ],
   "users": [
@@ -356,6 +417,30 @@
       "userType": "entrepreneur",
       "name": "Jane Entrepreneur",
       "profileId": 1
+    },
+    {
+      "id": "3",
+      "name": "Shawaiz",
+      "email": "shaaavie@gmail.com",
+      "password": "pentium21",
+      "userType": "investor",
+      "profileId": 3
+    },
+    {
+      "id": "4",
+      "name": "Shawaiz",
+      "email": "shaaaviee@gmail.com",
+      "password": "pentium21",
+      "userType": "entrepreneur",
+      "profileId": 4
+    },
+    {
+      "id": "5",
+      "name": "shawaizz",
+      "email": "shaaavie1@gmail.com",
+      "password": "pentium21",
+      "userType": "entrepreneur",
+      "profileId": 5
     }
   ]
 }

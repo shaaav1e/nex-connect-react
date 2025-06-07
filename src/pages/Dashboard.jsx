@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AppSidebar } from "@/components/app-sidebar";
+import CollaborationRequestModal from "@/components/CollaborationRequestModal";
 import { entrepreneursAPI, collaborationAPI } from "@/services/api";
 import {
   Breadcrumb,
@@ -25,6 +26,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { RefreshCw } from "lucide-react";
 
 // Investor Dashboard Content Component
 const InvestorDashboardContent = () => {
@@ -141,16 +143,24 @@ const InvestorDashboardContent = () => {
                     </p>
                   </div>
                 </div>
-              </CardHeader>
+              </CardHeader>{" "}
               <CardContent className="pt-0">
                 <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
                   {entrepreneur.pitchSummary}
                 </p>
-                <Link to={`/profile/entrepreneur/${entrepreneur.id}`}>
-                  <Button className="w-full" size="sm">
-                    View Full Profile
-                  </Button>
-                </Link>
+                <div className="flex gap-2">
+                  <Link
+                    to={`/profile/entrepreneur/${entrepreneur.id}`}
+                    className="flex-1"
+                  >
+                    <Button variant="outline" size="sm" className="w-full">
+                      View Profile
+                    </Button>
+                  </Link>
+                  <div className="flex-1">
+                    <CollaborationRequestModal entrepreneur={entrepreneur} />
+                  </div>
+                </div>
               </CardContent>
             </Card>
           ))}
@@ -166,23 +176,23 @@ const EntrepreneurDashboardContent = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchCollaborationRequests = async () => {
-      try {
-        setLoading(true); // Get current user from localStorage (in a real app, this would come from auth context)
-        const currentUser = JSON.parse(
-          localStorage.getItem("currentUser") || '{"id": 1}'
-        );
-        const data = await collaborationAPI.getByEntrepreneurId(currentUser.id);
-        setCollaborationRequests(data);
-      } catch (err) {
-        setError("Failed to load collaboration requests");
-        console.error("Error fetching collaboration requests:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchCollaborationRequests = async () => {
+    try {
+      setLoading(true); // Get current user from localStorage (in a real app, this would come from auth context)
+      const currentUser = JSON.parse(
+        localStorage.getItem("currentUser") || '{"id": 1}'
+      );
+      const data = await collaborationAPI.getByEntrepreneurId(currentUser.id);
+      setCollaborationRequests(data);
+    } catch (err) {
+      setError("Failed to load collaboration requests");
+      console.error("Error fetching collaboration requests:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchCollaborationRequests();
   }, []);
 
@@ -316,13 +326,25 @@ const EntrepreneurDashboardContent = () => {
             </p>
           </CardContent>
         </Card>
-      </div>
-
+      </div>{" "}
       {/* Collaboration Requests */}
       <div>
-        <h2 className="text-xl font-semibold mb-4">
-          Collaboration Requests from Investors
-        </h2>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-semibold">
+            Collaboration Requests from Investors
+          </h2>{" "}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={fetchCollaborationRequests}
+            disabled={loading}
+          >
+            <RefreshCw
+              className={`h-4 w-4 mr-2 ${loading ? "animate-spin" : ""}`}
+            />
+            {loading ? "Refreshing..." : "Refresh"}
+          </Button>
+        </div>
         {collaborationRequests.length === 0 ? (
           <Card>
             <CardContent className="py-8 text-center">
